@@ -1,0 +1,72 @@
+class AppIcon {
+    aliasSuffix :String
+    iconForeground :String = "firefox"
+    iconBackground :String = "#ffffff"
+    title :String
+    subtitle :String?
+}
+
+AppDefault = new AppIcon {
+    aliasSuffix = "App"
+    iconBackground = "#fdfdfd"
+    title = "Default"
+}
+
+AppSolidLight = new AppIcon {
+    aliasSuffix = "AppSolidLight"
+    title = "Light"
+}
+
+AppSolidDark = new AppIcon {
+    aliasSuffix = "AppSolidDark"
+    iconBackground = "#000000"
+    title = "Dark"
+}
+
+/* TODO: AppSolidX & AppGradientX */
+
+AppRetro2004 = new AppIcon {
+    aliasSuffix = "AppRetro2004"
+    iconForeground = "pixelated"
+    title = "Pixelated"
+}
+
+AppCuddling = new AppIcon {
+    aliasSuffix = "AppCuddling"
+    iconBackground = "cuddling"
+    iconForeground = "cuddling"
+    title = "Cuddling"
+}
+
+AppPride = new AppIcon {
+    aliasSuffix = "AppPride"
+    iconForeground = "pride"
+    title = "Pride"
+}
+
+AppFlaming = new AppIcon {
+    aliasSuffix = "AppFlaming"
+    iconBackground = "#000000"
+    iconForeground = "flaming"
+    title = "Flaming"
+}
+
+AppMinimal = new AppIcon {
+    aliasSuffix = "AppMinimal"
+    iconForeground = "minimal"
+    title = "Minimal"
+}
+
+AppMomo = new AppIcon {
+    aliasSuffix = "AppMomo"
+    iconForeground = "momo"
+    title = "Momo"
+    subtitle = "Created by @heyheymomodraws"
+}
+
+AppCool = new AppIcon {
+    aliasSuffix = "AppCool"
+    iconBackground = "cool"
+    iconForeground = "cool"
+    title = "Cool"
+}
