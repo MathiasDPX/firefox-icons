@@ -1,30 +1,25 @@
-import cairosvg
-import vd2svg
-import json
+from flask import Flask
+from icons import *
 
-class AppIcon:
-    def __init__(self,
-                aliasSuffix :str,
-                title :str,
-                subtitle :str = None,
-                iconForeground :str ="firefox",
-                iconBackground :str = "#ffffff",
-            ):
-        self.aliasSuffix = aliasSuffix
-        self.iconForeground = iconForeground
-        self.iconBackground = iconBackground
-        self.title = title
-        self.subtitle = subtitle
+app = Flask(__name__)
 
-    def __repr__(self):
-        return f'<AppIcon title="{self.title}">'
+@app.route("/api/foreground/<id>")
+def api_foreground(id:str):
+    if not hasForeground(id):
+        return {"error": True, "message": "Foreground not found"}
 
-raw_icons = json.load(open("icons.json", "r", encoding="utf-8"))
-icons = {}
+    foreground = getForeground(id)
+    return foreground.svg
 
-for key, icon in raw_icons.items():
-    icons[key] = AppIcon(**icon)
 
-def toSVG(vd:str) -> str:
-    svg = vd2svg.convertVd(vd)
-    return svg
+@app.route("/api/background/<id>")
+def api_background(id:str):
+    if not hasBackground(id):
+        return {"error": True, "message": "Background not found"}
+
+    background = getBackground(id)
+    return background.svg
+
+
+if __name__ == "__main__":
+    app.run()
