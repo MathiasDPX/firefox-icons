@@ -21,5 +21,15 @@ def api_background(id:str):
     return background.svg
 
 
+@app.route("/api/icon/<id>")
+def api_icon(id: str):
+    if not hasIcon(id):
+        return {"error": True, "message": "Icon not found"}
+
+    icon = getIcon(id)
+
+    return icon.svg
+
+
 if __name__ == "__main__":
     app.run()
