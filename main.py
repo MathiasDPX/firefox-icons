@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from icons import *
 
 app = Flask(__name__)
@@ -29,6 +29,26 @@ def api_icon(id: str):
     icon = getIcon(id)
 
     return icon.svg
+
+
+@app.route("/api/custom")
+def api_custom():
+    fg = request.args.get("fg", "firefox")
+    bg = request.args.get("bg", "#ffffff")
+
+    if not hasForeground(fg):
+        return {"error": True, "message": "Foreground not found"}
+
+    if not hasBackground(bg):
+        if not SHORT_HEX_PATTERN.match(bg):
+            return {"error": True, "message": "Background not found"}
+        background = Background(None, "#"+bg)
+    else:
+        background = getBackground(bg)
+
+    foreground = getForeground(fg)
+
+    return merge_svgs(foreground.svg, background.svg)
 
 
 if __name__ == "__main__":
