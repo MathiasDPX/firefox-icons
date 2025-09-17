@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>firefox-icons</title>
+  <style>
+    .preview svg {
+      outline: 0.5rem solid red;
+      margin-left: 0.5rem;
+      margin-top: 1em;
+    }
+    select#fg {
+      margin-top: 0.5em;
+    }
+
+    .buttons {
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>firefox-icons</h1>
+
+  Background:
+  <select id="bg">
+    <option value="ff000000">No background</option>
+    {% for background in backgrounds %}
+      <option value="{{ background.id }}"{% if loop.first %} selected {% endif %}>{{ background.id }}</option>
+    {% endfor %}
+  </select>
+
+  <br />
+
+  Foreground:
+  <select id="fg">
+    {% for foreground in foregrounds %}
+      <option value="{{ foreground.id }}"{% if loop.first %} selected {% endif %}>{{ foreground.id }}</option>
+    {% endfor %}
+  </select>
+
+  <div class="preview" id="preview"></div>
+
+  <div class="buttons">
+    <button id="saveSvg">Save as SVG</button>
+    <button id="savePng">Save as PNG</button>
+  </div>
+
+  <script>
+    const fgSelect = document.getElementById("fg");
+    const bgSelect = document.getElementById("bg");
+    const previewDiv = document.getElementById("preview");
+    const saveSvgBtn = document.getElementById("saveSvg");
+    const savePngBtn = document.getElementById("savePng");
+
+    async function updatePreview() {
+      const fg = fgSelect.value;
+      const bg = bgSelect.value;
+
+      try {
+        const response = await fetch(`/api/custom?bg=${encodeURIComponent(bg)}&fg=${encodeURIComponent(fg)}`);
+        const svgText = await response.text();
+        previewDiv.innerHTML = svgText; // directly insert the SVG
+      } catch (err) {
+        previewDiv.innerHTML = `<p style="color:red;">Failed to load preview</p>`;
+        console.error("Error fetching SVG:", err);
+      }
+    }
+
+    function saveAsSvg() {
+      const svgEl = previewDiv.querySelector("svg");
+      if (!svgEl) return;
+
+      const serializer = new XMLSerializer();
+      const svgString = serializer.serializeToString(svgEl);
+
+      const blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "icon.svg";
+      a.click();
+
+      URL.revokeObjectURL(url);
+    }
+
+    function saveAsPng() {
+      const svgEl = previewDiv.querySelector("svg");
+      if (!svgEl) return;
+
+      const serializer = new XMLSerializer();
+      const svgString = serializer.serializeToString(svgEl);
+
+      const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+      const url = URL.createObjectURL(svgBlob);
+
+      const img = new Image();
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+
+        canvas.toBlob(function (blob) {
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "icon.png";
+          a.click();
+        });
+      };
+      img.src = url;
+    }
+
+    fgSelect.addEventListener("change", updatePreview);
+    bgSelect.addEventListener("change", updatePreview);
+
+    saveSvgBtn.addEventListener("click", saveAsSvg);
+    savePngBtn.addEventListener("click", saveAsPng);
+
+    updatePreview();
+  </script>
+</body>
+</html>

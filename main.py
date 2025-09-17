@@ -1,7 +1,15 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from icons import *
 
 app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html", 
+                            foregrounds=getForegrounds(),
+                            backgrounds=getBackgrounds()
+                        )
+
 
 @app.route("/api/foreground/<id>")
 def api_foreground(id:str):
@@ -40,7 +48,7 @@ def api_custom():
         return {"error": True, "message": "Foreground not found"}
 
     if not hasBackground(bg):
-        if not SHORT_HEX_PATTERN.match(bg):
+        if not HEX_PATTERN.match(bg):
             return {"error": True, "message": "Background not found"}
         background = Background(None, "#"+bg)
     else:
@@ -52,4 +60,4 @@ def api_custom():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

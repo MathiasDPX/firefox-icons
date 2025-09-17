@@ -4,8 +4,7 @@ import json
 import os
 import re
 
-HEX_PATTERN = re.compile(r'#[A-Fa-f0-9]{6}')
-SHORT_HEX_PATTERN = re.compile(r'[A-Fa-f0-9]{6}')
+HEX_PATTERN = re.compile(r'(#?)[A-Fa-f0-9]{6,8}')
 
 def createBackground(hex:str):
     return f'<svg xmlns="http://www.w3.org/2000/svg" width="432" height="432" viewBox="0 0 432 432"><rect width="432" height="432" fill="{hex}" /></svg>'
