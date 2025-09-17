@@ -86,6 +86,7 @@ raw_icons = json.load(open("icons.json", "r", encoding="utf-8"))
 icons = {}
 
 for key, icon in raw_icons.items():
+    icon["aliasSuffix"] = key
     icons[key] = AppIcon(**icon)
 
 

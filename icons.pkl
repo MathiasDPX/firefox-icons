@@ -1,5 +1,4 @@
 class AppIcon {
-    aliasSuffix :String
     iconForeground :String = "firefox"
     iconBackground :String = "#ffffff"
     title :String
@@ -7,65 +6,115 @@ class AppIcon {
 }
 
 AppDefault = new AppIcon {
-    aliasSuffix = "App"
     iconBackground = "#fdfdfd"
     title = "Default"
 }
 
 AppSolidLight = new AppIcon {
-    aliasSuffix = "AppSolidLight"
     title = "Light"
 }
 
 AppSolidDark = new AppIcon {
-    aliasSuffix = "AppSolidDark"
     iconBackground = "#000000"
     title = "Dark"
 }
 
 /* TODO: AppSolidX & AppGradientX */
+AppSolidRed = new AppIcon {
+    iconBackground = "solid_red"
+    title = "Red"
+}
+
+AppSolidGreen = new AppIcon {
+    iconBackground = "solid_green"
+    title = "Green"
+}
+
+AppSolidBlue = new AppIcon {
+    iconBackground = "solid_blue"
+    title = "Blue"
+}
+
+AppSolidPurple = new AppIcon {
+    iconBackground = "solid_purple"
+    title = "Purple"
+}
+
+AppSolidPurpleDark = new AppIcon {
+    iconBackground = "solid_purple_dark"
+    title = "Dark purple"
+}
+
+AppGradientSunrise = new AppIcon {
+    iconBackground = "sunrise"
+    title = "Sunrise"
+}
+
+AppGradientGoldenHour = new AppIcon {
+    iconBackground = "golden_hour"
+    title = "Golden Hour"
+}
+
+AppGradientSunset = new AppIcon {
+    iconBackground = "sunset"
+    title = "Sunset"
+}
+
+AppGradientBlueHour = new AppIcon {
+    iconBackground = "blue_hour"
+    title = "Blue Hour"
+}
+
+AppGradientTwilight = new AppIcon {
+    iconBackground = "twilight"
+    title = "Twilight"
+}
+
+AppGradientMidnight = new AppIcon {
+    iconBackground = "midnight"
+    title = "Midnight"
+}
+
+AppGradientNorthernLights = new AppIcon {
+    iconBackground = "northern_lights"
+    title = "Northern Lights"
+}
+
 
 AppRetro2004 = new AppIcon {
-    aliasSuffix = "AppRetro2004"
     iconForeground = "pixelated"
     title = "Pixelated"
 }
 
 AppCuddling = new AppIcon {
-    aliasSuffix = "AppCuddling"
     iconBackground = "cuddling"
     iconForeground = "cuddling"
     title = "Cuddling"
 }
 
 AppPride = new AppIcon {
-    aliasSuffix = "AppPride"
     iconForeground = "pride"
     title = "Pride"
 }
 
 AppFlaming = new AppIcon {
-    aliasSuffix = "AppFlaming"
     iconBackground = "#000000"
     iconForeground = "flaming"
     title = "Flaming"
 }
 
 AppMinimal = new AppIcon {
-    aliasSuffix = "AppMinimal"
     iconForeground = "minimal"
     title = "Minimal"
 }
 
 AppMomo = new AppIcon {
-    aliasSuffix = "AppMomo"
     iconForeground = "momo"
     title = "Momo"
     subtitle = "Created by @heyheymomodraws"
 }
 
 AppCool = new AppIcon {
-    aliasSuffix = "AppCool"
     iconBackground = "cool"
     iconForeground = "cool"
     title = "Cool"
