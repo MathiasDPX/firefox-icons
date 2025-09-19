@@ -118,3 +118,8 @@ AppCool = new AppIcon {
     iconForeground = "cool"
     title = "Cool"
 }
+
+AppPixelated = new AppIcon {
+    iconForeground = "pixelated"
+    title = "Pixelated"
+}
