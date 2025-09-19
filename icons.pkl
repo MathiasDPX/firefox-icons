@@ -19,7 +19,6 @@ AppSolidDark = new AppIcon {
     title = "Dark"
 }
 
-/* TODO: AppSolidX & AppGradientX */
 AppSolidRed = new AppIcon {
     iconBackground = "solid_red"
     title = "Red"
@@ -82,8 +81,8 @@ AppGradientNorthernLights = new AppIcon {
 
 
 AppRetro2004 = new AppIcon {
-    iconForeground = "pixelated"
-    title = "Pixelated"
+    iconForeground = "retro_2004"
+    title = "Retro 2004"
 }
 
 AppCuddling = new AppIcon {
